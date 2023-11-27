@@ -2,6 +2,7 @@ package com.mediscreen.microservicepatient.model;
 
 import jakarta.persistence.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
 
 @Entity
@@ -20,7 +21,7 @@ public class Patient {
     private String lastName;
 
     @Column(name = "dateofbirth")
-    private LocalDate dateOfBirth;
+    private Instant dateOfBirth;
 
     @Column(name = "address")
     private String address;
@@ -31,7 +32,7 @@ public class Patient {
     @Column(name = "gender")
     private String gender;
 
-    public Patient(long id, String firstName, String lastName, LocalDate dateOfBirth, String address, String phoneNumber, String gender) {
+    public Patient(long id, String firstName, String lastName, Instant dateOfBirth, String address, String phoneNumber, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -68,11 +69,11 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public LocalDate getDateOfBirth() {
+    public Instant getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(Instant dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
