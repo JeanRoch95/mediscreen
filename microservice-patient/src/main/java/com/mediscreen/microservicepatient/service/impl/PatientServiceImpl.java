@@ -1,6 +1,7 @@
 package com.mediscreen.microservicepatient.service.impl;
 
 import com.mediscreen.microservicepatient.dto.PatientDTO;
+import com.mediscreen.microservicepatient.exception.PatientNotFoundException;
 import com.mediscreen.microservicepatient.mapper.PatientMapper;
 import com.mediscreen.microservicepatient.model.Patient;
 import com.mediscreen.microservicepatient.repository.PatientRepository;
@@ -23,7 +24,11 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDTO getPatientByFirstNameAndLastName(String lastName, String firstName) {
-        return patientMapper.ToDTO(patientRepository.findByLastNameAndFirstName(lastName, firstName));
+        Patient patient = patientRepository.findByLastNameAndFirstName(lastName, firstName);
+        if(patient == null) {
+            throw new PatientNotFoundException("Aucun patient trouvé avec le nom: " + lastName + ", et le prénom: " + firstName);
+        }
+        return patientMapper.ToDTO(patient);
     }
 
     @Override

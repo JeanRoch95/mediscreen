@@ -1,11 +1,13 @@
 package com.mediscreen.microservicepatient.controller;
 
 import com.mediscreen.microservicepatient.dto.PatientDTO;
+import com.mediscreen.microservicepatient.exception.PatientNotFoundException;
 import com.mediscreen.microservicepatient.model.Patient;
 import com.mediscreen.microservicepatient.service.PatientService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -45,10 +47,14 @@ public class PatientController {
     }
 
     @GetMapping("/patient/by-name")
-    public PatientDTO getPatientByLastNameAndFirstName(@RequestParam("lastname") String lastName, @RequestParam("firstname") String firstName) {
-        LOGGER.info("Get patient with lastname : " + lastName + " and firstname : " + firstName);
-        PatientDTO patientDTO = patientService.getPatientByFirstNameAndLastName(lastName, firstName);
-        return patientDTO;
+    public ResponseEntity<?> getPatientByLastNameAndFirstName(@RequestParam("lastname") String lastName, @RequestParam("firstname") String firstName) {
+        try {
+            LOGGER.info("Get patient with lastname : " + lastName + " and firstname : " + firstName);
+            PatientDTO patientDTO = patientService.getPatientByFirstNameAndLastName(lastName, firstName);
+            return ResponseEntity.ok(patientDTO);
+        } catch (PatientNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
     }
 
     @PostMapping("/patient")

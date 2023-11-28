@@ -1,0 +1,8 @@
+package com.mediscreen.microservicepatient.exception;
+
+public class PatientNotFoundException extends RuntimeException {
+
+    public PatientNotFoundException(String message) {
+        super(message);
+    }
+}
