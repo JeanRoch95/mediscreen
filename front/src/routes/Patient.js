@@ -21,7 +21,7 @@ const Patient = () => {
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
-        return date.toLocaleDateString('fr-FR'); // Formatte la date selon le format local français
+        return date.toLocaleDateString('fr-FR'); 
     };
     
 
@@ -39,10 +39,13 @@ const Patient = () => {
         event.preventDefault();
         PatientService.getPatientByLastNameAndFirstName(searchLastName, searchFirstName)
             .then(response => {
-                setPatients([response.data]); // Met à jour la liste des patients avec le résultat de la recherche
+                setPatients([response.data]);
             })
             .catch(error => {
                 console.log("Erreur lors de la recherche du patient:", error);
+                if (error.response && error.response.status === 404) {
+                    alert("Aucun patient trouvé"); // Affiche un message d'erreur
+                }
             });
     };
 
@@ -52,18 +55,41 @@ const Patient = () => {
             <div className="d-flex justify-content-between align-items-center">
             <Link to={`/patient/create`} className="btn btn-success mb-4">Nouveau patient</Link>
             <form onSubmit={handleSearch} className="mb-4">
-                <div className="form-row">
-                    <div className="col">
-                        <input type="text" id="lastNameSearch" className="form-control" placeholder="Nom" value={searchLastName} onChange={(e) => setSearchLastName(e.target.value)} style={{ width: '150px' }} />
-                    </div>
-                    <div className="col">
-                        <input type="text" id="firstNameSearch" className="form-control" placeholder="Prénom" value={searchFirstName} onChange={(e) => setSearchFirstName(e.target.value)} style={{ width: '150px' }} />
-                    </div>
-                    <div className="col d-flex align-items-end">
-                        <button type="submit" className="btn btn-primary">Rechercher</button>
-                    </div>
-                </div>
-            </form>
+    <div className="form-row">
+        <div className="col">
+            <input 
+                type="text" 
+                id="lastNameSearch" 
+                className="form-control" 
+                placeholder="Nom" 
+                value={searchLastName} 
+                onChange={(e) => setSearchLastName(e.target.value)} 
+                style={{ width: '150px' }} 
+            />
+        </div>
+        <div className="col">
+            <input 
+                type="text" 
+                id="firstNameSearch" 
+                className="form-control" 
+                placeholder="Prénom" 
+                value={searchFirstName} 
+                onChange={(e) => setSearchFirstName(e.target.value)} 
+                style={{ width: '150px' }} 
+            />
+        </div>
+        <div className="col d-flex align-items-end">
+            <button 
+                type="submit" 
+                className="btn btn-primary"
+                disabled={!searchLastName || !searchFirstName} // Le bouton est désactivé si l'un des champs est vide
+            >
+                Rechercher
+            </button>
+        </div>
+    </div>
+</form>
+
             </div>
             <table className="table table-light table-hover">
                 <thead className="thead-light">

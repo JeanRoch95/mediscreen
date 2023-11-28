@@ -35,7 +35,7 @@ const PatientCreate = () => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(name, value); // Ajoutez cette ligne pour vérifier le format de la date
+        console.log(name, value); 
         setPatient({ ...patient, [name]: value });
     };
 
