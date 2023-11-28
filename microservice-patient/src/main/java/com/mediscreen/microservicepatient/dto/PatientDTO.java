@@ -1,18 +1,37 @@
 package com.mediscreen.microservicepatient.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class PatientDTO {
 
     private long id;
+
+    @NotBlank(message = "Vous devez renseigner votre Nom")
+    @NotNull
     private String lastName;
+
+    @NotBlank(message = "Vous devez renseigner votre Prénom")
+    @NotNull
     private String firstName;
-    private Instant dateOfBirth;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @NotNull(message = "Veuillez renseigner votre date de naissance")
+    private Date dateOfBirth;
+
+    @NotNull
     private String address;
     private String phoneNumber;
+
+    @NotBlank(message = "Vous devez renseigner votre genre")
     private String gender;
 
-    public PatientDTO(long id, String lastName, String firstName, Instant dateOfBirth, String address, String phoneNumber, String gender) {
+    public PatientDTO(long id, String lastName, String firstName, Date dateOfBirth, String address, String phoneNumber, String gender) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -49,11 +68,11 @@ public class PatientDTO {
         this.firstName = firstName;
     }
 
-    public Instant getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Instant dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

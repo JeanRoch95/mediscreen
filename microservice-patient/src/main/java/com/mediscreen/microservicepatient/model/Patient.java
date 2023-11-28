@@ -1,9 +1,13 @@
 package com.mediscreen.microservicepatient.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "patient")
@@ -21,7 +25,8 @@ public class Patient {
     private String lastName;
 
     @Column(name = "dateofbirth")
-    private Instant dateOfBirth;
+    @DateTimeFormat(pattern = "YYYY-mm-dd")
+    private Date dateOfBirth;
 
     @Column(name = "address")
     private String address;
@@ -32,7 +37,7 @@ public class Patient {
     @Column(name = "gender")
     private String gender;
 
-    public Patient(long id, String firstName, String lastName, Instant dateOfBirth, String address, String phoneNumber, String gender) {
+    public Patient(long id, String firstName, String lastName, Date dateOfBirth, String address, String phoneNumber, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -69,11 +74,11 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public Instant getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Instant dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

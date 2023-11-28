@@ -6,7 +6,13 @@ import com.mediscreen.microservicepatient.service.PatientService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/")
@@ -46,20 +52,39 @@ public class PatientController {
     }
 
     @PostMapping("/patient")
-    public void createPatient(@Valid @RequestBody PatientDTO patientDTO) {
-        // TODO -
-        //  Try - Catch
-        //  Ajouter bindig result
+    public ResponseEntity<?> createPatient(@Valid @RequestBody PatientDTO patientDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = new HashMap<>();
+            bindingResult.getAllErrors().forEach(error -> {
+                String fieldName = ((FieldError) error).getField();
+                String errorMessage = error.getDefaultMessage();
+                errors.put(fieldName, errorMessage);
+            });
+
+            return ResponseEntity.badRequest().body(errors);
+        }
+
         patientService.createPatient(patientDTO);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/update/{id}")
-    public void updatePatient(@PathVariable Long id, @Valid @RequestBody PatientDTO patientDTO) {
-        // TODO -
-        //  Try - Catch
-        //  Ajouter bindig result
+    public ResponseEntity<?> updatePatient(@PathVariable Long id, @Valid @RequestBody PatientDTO patientDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = new HashMap<>();
+            bindingResult.getAllErrors().forEach(error -> {
+                String fieldName = ((FieldError) error).getField();
+                String errorMessage = error.getDefaultMessage();
+                errors.put(fieldName, errorMessage);
+            });
+
+            return ResponseEntity.badRequest().body(errors);
+        }
+
         patientService.updatePatient(id, patientDTO);
+        return ResponseEntity.ok().build();
     }
+
 
     @DeleteMapping("patient/{id}")
     public void deletePatient(@PathVariable long id) {
