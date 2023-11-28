@@ -21,7 +21,7 @@ const Patient = () => {
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-EN'); // Formatte la date selon le format local français
+        return date.toLocaleDateString('fr-FR'); // Formatte la date selon le format local français
     };
     
 

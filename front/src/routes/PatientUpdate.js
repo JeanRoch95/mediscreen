@@ -15,6 +15,8 @@ const PatientUpdate = () => {
     phoneNumber: '',
     gender: ''
   });
+  const [errors, setErrors] = useState({});
+
 
   useEffect(() => {
     PatientService.getPatientById(id)
@@ -33,8 +35,14 @@ const PatientUpdate = () => {
           navigate('/patient')
       })
       .catch(error => {
-        console.log("Erreur lors de la mise à jour du patient:", error);
-      });
+        console.log("Réponse d'erreur du serveur:", error.response.data);
+        if (error.response && error.response.data) {
+            setErrors(error.response.data);
+            console.log(errors);
+        } else {
+            console.log("Erreur lors de la création du patient:", error);
+        }
+    });
   };
 
   const handleInputChange = (event) => {
@@ -55,24 +63,30 @@ const PatientUpdate = () => {
                             name="lastName"
                             value={patient.lastName}
                             onChange={handleInputChange}
-                            className="form-control mb-3"
-                        />
+                            className={`form-control mb-3 ${errors.lastName ? 'is-invalid' : ''}`}
+                            />
+                            {errors.lastName && <div className="invalid-feedback">{errors.lastName}</div>}
+
                         <label>Prénom</label>
                         <input
                             type="text"
                             name="firstName"
                             value={patient.firstName}
                             onChange={handleInputChange}
-                            className="form-control mb-3"
-                        />
+                            className={`form-control mb-3 ${errors.firstName ? 'is-invalid' : ''}`}
+                            />
+                            {errors.firstName && <div className="invalid-feedback">{errors.firstName}</div>}
+
                         <label>Date de Naissance</label>
                         <input
                             type="date"
                             name="dateOfBirth"
                             value={patient.dateOfBirth}
                             onChange={handleInputChange}
-                            className="form-control mb-3"
-                        />
+                            className={`form-control mb-3 ${errors.dateOfBirth ? 'is-invalid' : ''}`}
+                            />
+                            {errors.dateOfBirth && <div className="invalid-feedback">{errors.dateOfBirth}</div>}
+
                         <label>Adresse</label>
                         <input
                             type="text"
@@ -94,13 +108,14 @@ const PatientUpdate = () => {
                             name="gender"
                             value={patient.gender}
                             onChange={handleInputChange}
-                            className="form-control mb-4"
-                        >
+                            className={`form-control mb-4 ${errors.gender ? 'is-invalid' : ''}`}
+                            >
                             <option value="">Sélectionnez le genre</option>
                             <option value="Male">Homme</option>
                             <option value="Female">Femme</option>
-                            <option value="Other">Autre</option>
                         </select>
+                        {errors.gender && <div className="invalid-feedback">{errors.gender}</div>}
+
                         <button type="submit" className="btn btn-primary btn-block">Mettre à jour</button>
                     </form>
                 </div>
