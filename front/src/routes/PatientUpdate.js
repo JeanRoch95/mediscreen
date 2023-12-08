@@ -35,12 +35,9 @@ const PatientUpdate = () => {
           navigate('/patient')
       })
       .catch(error => {
-        console.log("Réponse d'erreur du serveur:", error.response.data);
         if (error.response && error.response.data) {
             setErrors(error.response.data);
-            console.log(errors);
         } else {
-            console.log("Erreur lors de la création du patient:", error);
         }
     });
   };
