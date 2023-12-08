@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@CrossOrigin("http://localhost:8080")
 @RequestMapping("/api/")
 public class PatientController {
 
@@ -74,7 +75,7 @@ public class PatientController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/patient/{id}")
     public ResponseEntity<?> updatePatient(@PathVariable Long id, @Valid @RequestBody PatientDTO patientDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = new HashMap<>();
