@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Création d'un Patient</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <h1 class="text-center mb-4">Création d'un Patient</h1>
+            <form th:action="@{/patient/add}" th:object="${patientBean}" method="post" class="form-group">
+                <div class="form-group">
+                    <label for="lastName">Nom de famille</label>
+                    <input type="text" th:field="*{lastName}" class="form-control" id="lastName" th:classappend="${#fields.hasErrors('lastName')} ? 'is-invalid' : ''">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstName">Prénom</label>
+                    <input type="text" th:field="*{firstName}" class="form-control" id="firstName" th:classappend="${#fields.hasErrors('firstName')} ? 'is-invalid' : ''">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dateOfBirth">Date de Naissance</label>
+                    <input type="date" th:field="*{dateOfBirth}" class="form-control" id="dateOfBirth" th:classappend="${#fields.hasErrors('dateOfBirth')} ? 'is-invalid' : ''">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Adresse</label>
+                    <input type="text" th:field="*{address}" class="form-control" id="address" th:classappend="${#fields.hasErrors('address')} ? 'is-invalid' : ''">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Numéro de Téléphone</label>
+                    <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber" th:classappend="${#fields.hasErrors('phoneNumber')} ? 'is-invalid' : ''">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Genre</label>
+                    <select th:field="*{gender}" class="form-control" id="gender" th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid' : ''">
+                        <option value="">Sélectionnez le genre</option>
+                        <option value="H">Homme</option>
+                        <option value="F">Femme</option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Créer</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
