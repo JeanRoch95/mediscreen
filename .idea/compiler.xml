@@ -18,11 +18,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mediscreenWebapp" />
         <module name="eureka-server" />
+        <module name="configServer" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="configServer" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="mediscreenWebapp" options="-parameters" />
       <module name="microservice-patient" options="-parameters" />

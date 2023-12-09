@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/mediscreenWebapp/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-serveer/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/configServer/pom.xml" />
       </list>
     </option>
   </component>
