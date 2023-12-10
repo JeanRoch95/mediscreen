@@ -9,7 +9,7 @@ import java.util.List;
 @FeignClient(name = "microservice-patients", url = "localhost:9000")
 public interface MicroservicePatientProxy {
 
-        @GetMapping(value = "/api/patients")
+        @GetMapping(value = "/api/patient/all")
         List<PatientBean> getAllPatient();
 
         @GetMapping(value = "api/patient/{id}")

@@ -35,7 +35,7 @@ public class PatientController {
         return "Hi!";
     }
 
-    @GetMapping("/patients")
+    @GetMapping("/patient/all")
     public Iterable getAllPatients() {
         return patientService.getAllPatient();
     }
