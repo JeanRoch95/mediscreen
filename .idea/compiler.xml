@@ -19,6 +19,7 @@
         <module name="mediscreenWebapp" />
         <module name="eureka-server" />
         <module name="configServer" />
+        <module name="gateway-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -26,6 +27,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="configServer" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
       <module name="mediscreenWebapp" options="-parameters" />
       <module name="microservice-patient" options="-parameters" />
     </option>
