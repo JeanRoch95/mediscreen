@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  mediscreenwebapp:
+    build:
+      context: ./mediscreenWebapp
+      dockerfile: Dockerfile
+    ports:
+      - "9003:9003"
+    depends_on:
+      - mysql
+
+  microservicepatient:
+    build:
+      context: ./microservice-patient
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    depends_on:
+      - mysql
+
+  gatewayservice:
+    build:
+      context: ./gateway-service
+      dockerfile: Dockerfile
+    ports:
+      - "9002:9002"
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: mediscreen_patient
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+
+networks:
+  default:
+    driver: bridge

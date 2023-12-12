@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-@EnableConfigurationProperties
 public class MicroservicePatientApplication {
 
     public static void main(String[] args) {

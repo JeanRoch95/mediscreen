@@ -8,7 +8,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients("com.mediscreen")
-@EnableConfigurationProperties
 public class MediscreenWebappApplication {
 
 	public static void main(String[] args) {
