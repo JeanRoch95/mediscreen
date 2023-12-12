@@ -26,7 +26,7 @@ public class WebappController {
         this.patientProxy = patientProxy;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/patient")
     public String home(Model model) {
         List<PatientBean> patientBeanList = patientProxy.getAllPatient();
         model.addAttribute("patients", patientBeanList);
@@ -40,7 +40,7 @@ public class WebappController {
         return "Patient";
     }
 
-    @GetMapping("/patients/search")
+    @GetMapping("/patient/search")
     public String searchPatient(@RequestParam("lastname") String lastName,
                                 @RequestParam("firstname") String firstName,
                                 Model model, RedirectAttributes redirectAttributes) {

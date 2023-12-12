@@ -7,7 +7,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableConfigurationProperties
-@EnableDiscoveryClient
 public class GatewayServiceApplication {
 
 	public static void main(String[] args) {
