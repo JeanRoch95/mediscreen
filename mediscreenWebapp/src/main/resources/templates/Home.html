@@ -9,8 +9,8 @@
     <h1 class="text-center mb-5">Liste des Patients</h1>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="/patient/create" class="btn btn-success">Nouveau patient</a>
-        <form th:action="@{/patients/search}" method="get" class="form-row">
+        <a href="/patient/add" class="btn btn-success">Nouveau patient</a>
+        <form th:action="@{/patient/search}" method="get" class="form-row">
             <div class="col">
                 <input type="text" name="lastname" class="form-control" placeholder="Nom" />
             </div>

@@ -68,7 +68,7 @@ public class WebappController {
         }
         try {
             patientProxy.addPatient(patientBean);
-            return "redirect:/";
+            return "redirect:/patient";
         } catch (FeignException.BadRequest e) {
             // Convertir la réponse JSON en Map
             Map<String, String> apiErrors = new ObjectMapper().readValue(e.contentUTF8(), new TypeReference<Map<String, String>>() {});
@@ -109,13 +109,12 @@ public class WebappController {
         }
 
         redirectAttributes.addFlashAttribute("success", "Patient mis à jour avec succès.");
-        return "redirect:/";
+        return "redirect:/patient";
     }
 
     @GetMapping("/patient/delete/{id}")
     public String deletePatient(@PathVariable("id") long id) {
         patientProxy.deletePatient(id);
-        return "redirect:/";
+        return "redirect:/patient";
     }
-
 }

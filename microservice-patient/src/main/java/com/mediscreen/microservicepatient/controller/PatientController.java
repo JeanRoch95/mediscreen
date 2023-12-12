@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("http://localhost:9002")
 @RequestMapping("/api/")
 public class PatientController {
 
@@ -29,11 +29,6 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @GetMapping("/")
-    public String homePatient() {
-        LOGGER.info("Home OK :)");
-        return "Hi!";
-    }
 
     @GetMapping("/patient/all")
     public Iterable getAllPatients() {
