@@ -48,7 +48,7 @@ public class PatientServiceImpl implements PatientService {
 
         Patient existingPatient = patientRepository.findByLastNameAndFirstName(patientDTO.getLastName(), patientDTO.getFirstName());
         if (existingPatient != null) {
-            // TODO Create exception.
+            throw new PatientNotFoundException("Le patient que vous essayé de créer existe déjà.");
         }
 
         Patient patient = new Patient();
@@ -79,7 +79,7 @@ public class PatientServiceImpl implements PatientService {
 
             patientRepository.save(optionalPatient.get());
         } else {
-            // TODO Create Exception
+            throw new PatientNotFoundException("Le patient que vous essayé de modifier n'existe pas.");
         }
     }
 
@@ -91,8 +91,7 @@ public class PatientServiceImpl implements PatientService {
             patientRepository.deleteById(id);
             return true;
         } else {
-            // TODO Exception
-            return false;
+            throw new PatientNotFoundException("Le patient que vous essayé de supprimer n'existe pas.");
         }
     }
 }
