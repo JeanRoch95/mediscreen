@@ -18,6 +18,10 @@ services:
       - "9000:9000"
     depends_on:
       - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql/mediscreen_patient?serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
 
   gatewayservice:
     build:
@@ -31,7 +35,6 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: mediscreen_patient
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - mysql_data:/var/lib/mysql
