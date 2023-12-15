@@ -17,13 +17,9 @@ public class Note {
     private String id;
 
     @Field(value = "patientId")
-    private int patientId;
+    private long patientId;
 
-    @Field(value = "lastName")
-    private String patientLastName;
-
-    @Field(value = "firstName")
-    private String patientFirstName;
+    private String patient;
 
     @Field(value = "note")
     private String note;
@@ -36,11 +32,9 @@ public class Note {
     public Note() {
     }
 
-    public Note(String id, int patientId, String patientLastName, String patientFirstName, String note, Instant dateNote) {
+    public Note(String id, long patientId, String patient, String note, Instant dateNote) {
         this.id = id;
         this.patientId = patientId;
-        this.patientLastName = patientLastName;
-        this.patientFirstName = patientFirstName;
         this.note = note;
         this.dateNote = dateNote;
     }
@@ -53,28 +47,20 @@ public class Note {
         this.id = id;
     }
 
-    public int getPatientId() {
+    public long getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(int patientId) {
+    public void setPatientId(long patientId) {
         this.patientId = patientId;
     }
 
-    public String getPatientLastName() {
-        return patientLastName;
+    public String getPatient() {
+        return patient;
     }
 
-    public void setPatientLastName(String patientLastName) {
-        this.patientLastName = patientLastName;
-    }
-
-    public String getPatientFirstName() {
-        return patientFirstName;
-    }
-
-    public void setPatientFirstName(String patientFirstName) {
-        this.patientFirstName = patientFirstName;
+    public void setPatient(String patient) {
+        this.patient = patient;
     }
 
     public String getNote() {
