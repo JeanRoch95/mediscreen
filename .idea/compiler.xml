@@ -18,6 +18,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mediscreenWebapp" />
         <module name="gateway-service" />
+        <module name="microservice-note" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -31,6 +32,7 @@
       <module name="eureka-server" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="mediscreenWebapp" options="-parameters" />
+      <module name="microservice-note" options="-parameters" />
       <module name="microservice-patient" options="-parameters" />
     </option>
   </component>

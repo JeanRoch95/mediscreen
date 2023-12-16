@@ -10,6 +10,17 @@ services:
     depends_on:
       - mysql
 
+  microservicenote:
+    build:
+      context: ./microservice-note
+      dockerfile: Dockerfile
+    ports:
+      - "9004:9004"
+    depends_on:
+      - mongodb
+    environment:
+      - "spring_data_mongodb_host=mongodb"
+
   microservicepatient:
     build:
       context: ./microservice-patient
@@ -39,8 +50,17 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data_container:/data/db
+
+
 volumes:
   mysql_data:
+  mongodb_data_container:
 
 networks:
   default:

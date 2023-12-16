@@ -22,7 +22,6 @@
             </div>
         </form>
 
-        <!-- Affichage de la boîte de dialogue si aucun patient n'est trouvé -->
         <div th:if="${noPatientFound}" class="alert alert-warning" role="alert">
             Aucun patient trouvé.
         </div>
@@ -56,6 +55,24 @@
                 <a th:href="@{/patient/update/{id}(id=${patient.id})}" class="btn btn-warning">Modifier</a>
                 <a th:href="@{/patient/delete/{id}(id=${patient.id})}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce patient ?');">Supprimer</a>
             </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-light table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th>patId</th>
+            <th>patient</th>
+            <th>note</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="notes : ${notes}">
+            <td th:text="${notes.getPatientId()}"></td>
+            <td th:text="${notes.getPatient()}"></td>
+            <td th:text="${notes.getNote()}"></td>
         </tr>
         </tbody>
     </table>

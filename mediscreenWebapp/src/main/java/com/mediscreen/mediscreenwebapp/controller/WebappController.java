@@ -3,7 +3,9 @@ package com.mediscreen.mediscreenwebapp.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mediscreen.mediscreenwebapp.beans.NoteBean;
 import com.mediscreen.mediscreenwebapp.beans.PatientBean;
+import com.mediscreen.mediscreenwebapp.proxies.MicroserviceNoteProxy;
 import com.mediscreen.mediscreenwebapp.proxies.MicroservicePatientProxy;
 import feign.FeignException;
 import org.springframework.stereotype.Controller;
@@ -22,14 +24,20 @@ public class WebappController {
 
     private final MicroservicePatientProxy patientProxy;
 
-    public WebappController(MicroservicePatientProxy patientProxy) {
+    private final MicroserviceNoteProxy noteProxy;
+
+
+    public WebappController(MicroservicePatientProxy patientProxy, MicroserviceNoteProxy noteProxy) {
         this.patientProxy = patientProxy;
+        this.noteProxy = noteProxy;
     }
 
     @RequestMapping("/patient")
     public String home(Model model) {
         List<PatientBean> patientBeanList = patientProxy.getAllPatient();
+        List<NoteBean> noteBeanList = noteProxy.getAllNote();
         model.addAttribute("patients", patientBeanList);
+        model.addAttribute("notes", noteBeanList);
         return "Home";
     }
 

@@ -19,12 +19,12 @@ public class NoteController {
     }
 
     @GetMapping("/notes")
-    public List<Note> getAllNotes(Model model) {
+    public List<Note> getAllNotes() {
         return noteService.getAllNote();
     }
 
     @PostMapping("/notes")
     public Note createNote(@RequestBody Note note) {
-        return createNote(note);
+        return noteService.addNote(note);
     }
 }
