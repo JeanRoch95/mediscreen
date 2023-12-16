@@ -69,6 +69,18 @@ public class WebappController {
         return "CreatePatient";
     }
 
+    @GetMapping("note/add")
+    public String addNote(Model model) {
+        model.addAttribute("noteBean", new NoteBean());
+        return "CreateNote";
+    }
+
+    @PostMapping("note/add")
+    public String addNote(@ModelAttribute NoteBean noteBean, Model model, RedirectAttributes redirectAttributes) {
+        noteProxy.createNote(noteBean);
+        return "redirect:/patient";
+    }
+
     @PostMapping("patient/add")
     public String addPatient(@ModelAttribute PatientBean patientBean, BindingResult result, Model model, RedirectAttributes redirectAttributes) throws JsonProcessingException {
         if (result.hasErrors()) {
