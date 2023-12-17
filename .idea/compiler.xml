@@ -17,6 +17,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mediscreenWebapp" />
+        <module name="microservice-risk" />
         <module name="gateway-service" />
         <module name="microservice-note" />
       </profile>
@@ -34,6 +35,7 @@
       <module name="mediscreenWebapp" options="-parameters" />
       <module name="microservice-note" options="-parameters" />
       <module name="microservice-patient" options="-parameters" />
+      <module name="microservice-risk" options="-parameters" />
     </option>
   </component>
 </project>

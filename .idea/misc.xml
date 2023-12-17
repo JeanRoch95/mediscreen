@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/configServer/pom.xml" />
         <option value="$PROJECT_DIR$/gateway-service/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-note/pom.xml" />
+        <option value="$PROJECT_DIR$/microservice-risk/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
