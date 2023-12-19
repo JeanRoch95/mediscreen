@@ -14,5 +14,7 @@ public interface RiskService {
 
     int countTriggerTerms(List<String> notes);
 
+    String normalizeString(String input);
+
     String determineRiskLevel(int age, String gender, int triggerCount);
 }
