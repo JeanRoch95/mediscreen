@@ -19,18 +19,12 @@ public class Note {
     @Field(value = "patientId")
     private long patientId;
 
-    private String patient;
+    private String riskLevel;
 
     @Field(value = "note")
     private String note;
 
     public Note() {
-    }
-
-    public Note(String id, long patientId, String patient, String note) {
-        this.id = id;
-        this.patientId = patientId;
-        this.note = note;
     }
 
     public String getId() {
@@ -49,12 +43,12 @@ public class Note {
         this.patientId = patientId;
     }
 
-    public String getPatient() {
-        return patient;
+    public String getRiskLevel() {
+        return riskLevel;
     }
 
-    public void setPatient(String patient) {
-        this.patient = patient;
+    public void setRiskLevel(String riskLevel) {
+        this.riskLevel = riskLevel;
     }
 
     public String getNote() {

@@ -8,4 +8,6 @@ import java.util.List;
 public interface NoteRepository extends MongoRepository<Note, String> {
 
     List<Note> findAllByOrderByPatientIdAsc();
+
+    List<Note> findAllByPatientId(long id);
 }
