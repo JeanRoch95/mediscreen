@@ -15,21 +15,9 @@
                     <label for="patientId">Id du patient</label>
                     <input type="text" th:field="*{patientId}" class="form-control" id="patientId" >
                 </div>
-
                 <div class="form-group">
-                    <label for="risk">Niveau de risque</label>
-                    <select th:field="*{patient}" class="form-control" id="risk">
-                        <option value="">Sélectionnez le genre</option>
-                        <option value="None">None</option>
-                        <option value="Borderline">Borderline</option>
-                        <option value="In-Danger">In Danger</option>
-                        <option value="Early-Onset">early Onset</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="dateOfBirth">Note</label>
-                    <input type="text" th:field="*{note}" class="form-control" id="dateOfBirth">
+                    <label for="noteContent">Note</label>
+                    <input type="text" th:field="*{note}" class="form-control" id="noteContent">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">Créer</button>

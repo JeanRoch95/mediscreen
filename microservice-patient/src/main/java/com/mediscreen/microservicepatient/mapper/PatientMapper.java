@@ -9,11 +9,7 @@ import java.util.Optional;
 @Mapper(componentModel = "spring")
 public interface PatientMapper {
 
-    PatientDTO optionalToDTO(Optional<Patient> patient);
-
-
     PatientDTO ToDTO(Patient patient);
 
 
-    Patient fromDTO(PatientDTO patientDTO);
 }

@@ -29,12 +29,22 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-
+    /**
+     * Retrieves all patients.
+     *
+     * @return An iterable list of all patients.
+     */
     @GetMapping("/patient/all")
     public Iterable getAllPatients() {
         return patientService.getAllPatient();
     }
 
+    /**
+     * Retrieves a patient by their ID.
+     *
+     * @param id The ID of the patient.
+     * @return The patient DTO.
+     */
     @GetMapping("/patient/{id}")
     public PatientDTO getPatientById(@PathVariable long id) {
         LOGGER.info("Get patient with id : " + id);
@@ -42,6 +52,13 @@ public class PatientController {
         return patientDTO;
     }
 
+    /**
+     * Retrieves a patient by their last name and first name.
+     *
+     * @param lastName The last name of the patient.
+     * @param firstName The first name of the patient.
+     * @return A response entity containing the patient DTO or an error message.
+     */
     @GetMapping("/patient/by-name")
     public ResponseEntity<?> getPatientByLastNameAndFirstName(@RequestParam("lastname") String lastName, @RequestParam("firstname") String firstName) {
         try {
@@ -53,6 +70,13 @@ public class PatientController {
         }
     }
 
+    /**
+     * Creates a new patient.
+     *
+     * @param patientDTO The patient DTO.
+     * @param bindingResult The binding result for validation.
+     * @return A response entity indicating the result of the operation.
+     */
     @PostMapping("/patient")
     public ResponseEntity<?> createPatient(@Valid @RequestBody PatientDTO patientDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -70,6 +94,14 @@ public class PatientController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Updates an existing patient.
+     *
+     * @param id The ID of the patient to update.
+     * @param patientDTO The updated patient DTO.
+     * @param bindingResult The binding result for validation.
+     * @return A response entity indicating the result of the operation.
+     */
     @PutMapping("/patient/{id}")
     public ResponseEntity<?> updatePatient(@PathVariable Long id, @Valid @RequestBody PatientDTO patientDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -87,7 +119,11 @@ public class PatientController {
         return ResponseEntity.ok().build();
     }
 
-
+    /**
+     * Deletes a patient by their ID.
+     *
+     * @param id The ID of the patient to delete.
+     */
     @DeleteMapping("patient/{id}")
     public void deletePatient(@PathVariable long id) {
         patientService.deletePatient(id);

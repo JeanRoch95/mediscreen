@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Détails du Patient</title>
-    <link rel="stylesheet" href="/path/to/bootstrap.min.css"> <!-- Assurez-vous d'inclure Bootstrap -->
+    <link rel="stylesheet" href="/path/to/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-4">
     <h1 class="text-center mb-5">Détails du Patient</h1>
 
-    <!-- Détails du patient -->
     <div class="card">
         <div class="card-body">
             <h5 class="card-title" th:text="${patient.firstName} + ' ' + ${patient.lastName}"></h5>

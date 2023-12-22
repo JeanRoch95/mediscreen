@@ -24,7 +24,13 @@ public class RiskController {
         this.riskService = riskService;
     }
 
-
+    /**
+     * Endpoint for evaluating the risk level based on note data.
+     * Accepts a NoteDTO object and returns a RiskAssessmentResponse.
+     *
+     * @param noteDTO Data transfer object containing note details for risk evaluation.
+     * @return A response object containing the evaluated risk level.
+     */
     @PostMapping("/risk/evaluate")
     public RiskAssessmentResponse evaluateRisk(@RequestBody NoteDTO noteDTO) {
 
