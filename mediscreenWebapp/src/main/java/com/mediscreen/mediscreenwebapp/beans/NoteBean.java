@@ -12,18 +12,11 @@ public class NoteBean {
 
     private long patientId;
 
-    private String patient;
+    private String riskLevel;
 
     private String note;
 
     public NoteBean() {
-    }
-
-    public NoteBean(String id, long patientId, String patient, String note) {
-        this.id = id;
-        this.patientId = patientId;
-        this.patient = patient;
-        this.note = note;
     }
 
     public String getId() {
@@ -42,12 +35,12 @@ public class NoteBean {
         this.patientId = patientId;
     }
 
-    public String getPatient() {
-        return patient;
+    public String getRiskLevel() {
+        return riskLevel;
     }
 
-    public void setPatient(String patient) {
-        this.patient = patient;
+    public void setRiskLevel(String riskLevel) {
+        this.riskLevel = riskLevel;
     }
 
     public String getNote() {

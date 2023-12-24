@@ -19,6 +19,7 @@ public class Note {
     @Field(value = "patientId")
     private long patientId;
 
+    @Field(value = "riskLevel")
     private String riskLevel;
 
     @Field(value = "note")

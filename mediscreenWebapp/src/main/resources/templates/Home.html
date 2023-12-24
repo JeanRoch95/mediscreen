@@ -67,16 +67,16 @@
         <thead class="thead-light">
         <tr>
             <th>patId</th>
-            <th>patient</th>
+            <th>RiskLevel</th>
             <th>note</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="notes : ${notes}">
-            <td th:text="${notes.getPatientId()}"></td>
-            <td th:text="${notes.getPatient()}"></td>
-            <td th:text="${notes.getNote()}"></td>
+        <tr th:each="note : ${notes}">
+            <td th:text="${note.getPatientId()}"></td>
+            <td th:text="${note.getRiskLevel()}"></td>
+            <td th:text="${note.getNote()}"></td>
         </tr>
         </tbody>
     </table>

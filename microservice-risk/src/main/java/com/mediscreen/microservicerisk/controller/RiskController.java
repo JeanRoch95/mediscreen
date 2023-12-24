@@ -34,7 +34,6 @@ public class RiskController {
     @PostMapping("/risk/evaluate")
     public RiskAssessmentResponse evaluateRisk(@RequestBody NoteDTO noteDTO) {
 
-        RiskAssessmentResponse response = riskService.evaluateRisk(noteDTO);
-        return response;
+        return riskService.evaluateRisk(noteDTO);
     }
 }

@@ -55,6 +55,8 @@ public class WebappController {
     public String home(Model model) {
         List<PatientBean> patientBeanList = patientProxy.getAllPatient();
         List<NoteBean> noteBeanList = noteProxy.getAllNote();
+        logger.info("PatientId : {}, ", noteBeanList.get(3).getPatientId());
+        logger.info("note : {}, ", noteBeanList.get(1).getRiskLevel());
         model.addAttribute("patients", patientBeanList);
         model.addAttribute("notes", noteBeanList);
         return "Home";
@@ -137,16 +139,16 @@ public class WebappController {
         List<String> noteContents = allNotes.stream()
                 .map(NoteBean::getNote)
                 .collect(Collectors.toList());
-        logger.info("note : {}", noteContents.size());
         RiskAssessmentRequest request = new RiskAssessmentRequest();
         request.setPatientId(noteBean.getPatientId());
         request.setNoteContent(noteContents);
         request.setGender(patientBean.getGender());
         request.setBirthDate(patientBean.getDateOfBirth());
-        logger.info("note : {} ", request.getNoteContent().size());
 
         RiskAssessmentResponse response = riskProxy.evaluateRisk(request);
 
+        logger.info("response risk: {}",response.getRiskLevel());
+        logger.info("response id: {}",response.getPatientId());
         RiskLevelDTO riskLevelDTO = new RiskLevelDTO();
         riskLevelDTO.setPatientId(noteBean.getPatientId());
         riskLevelDTO.setRiskLevel(response.getRiskLevel());

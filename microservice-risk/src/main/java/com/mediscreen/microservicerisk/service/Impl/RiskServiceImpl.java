@@ -32,12 +32,13 @@ public class RiskServiceImpl implements RiskService {
         int triggerCount = countTriggerTerms(noteDTO.getNoteContent());
 
         String riskLevel = determineRiskLevel(age, noteDTO.getGender(), triggerCount);
+        logger.info("RiskLevel 1: {}", riskLevel);
 
         RiskAssessmentResponse riskAssessmentResponse = new RiskAssessmentResponse();
         riskAssessmentResponse.setRiskLevel(riskLevel);
         riskAssessmentResponse.setPatientId(noteDTO.getPatientId());
 
-        logger.info("riskLevel : {}", riskAssessmentResponse.getRiskLevel());
+        logger.info("riskLevel2 : {}", riskAssessmentResponse.getRiskLevel());
 
         return riskAssessmentResponse;
     }
