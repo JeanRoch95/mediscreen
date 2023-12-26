@@ -8,24 +8,25 @@ services:
     ports:
       - "9003:9003"
     depends_on:
-      - mysql
+      - gatewayservice
+    networks:
+      - internal
 
   microservicerisk:
     build:
       context: ./microservice-risk
       dockerfile: Dockerfile
-    ports:
-      - "9005:9005"
-
+    networks:
+      - internal
 
   microservicenote:
     build:
       context: ./microservice-note
       dockerfile: Dockerfile
-    ports:
-      - "9004:9004"
     depends_on:
       - mongodb
+    networks:
+      - internal
     environment:
       - "spring_data_mongodb_host=mongodb"
 
@@ -33,10 +34,10 @@ services:
     build:
       context: ./microservice-patient
       dockerfile: Dockerfile
-    ports:
-      - "9000:9000"
     depends_on:
       - mysql
+    networks:
+      - internal
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql/mediscreen_patient?serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
@@ -48,28 +49,29 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9002:9002"
+    networks:
+      - internal
 
   mysql:
     image: mysql:8.0
-    ports:
-      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - internal
 
   mongodb:
     image: mongo:latest
-    ports:
-      - "27017:27017"
     volumes:
       - mongodb_data_container:/data/db
-
+    networks:
+      - internal
 
 volumes:
   mysql_data:
   mongodb_data_container:
 
 networks:
-  default:
+  internal:
     driver: bridge

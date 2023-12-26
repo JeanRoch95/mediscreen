@@ -6,11 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mediscreen.mediscreenwebapp.DTO.RiskAssessmentRequest;
 import com.mediscreen.mediscreenwebapp.DTO.RiskAssessmentResponse;
 import com.mediscreen.mediscreenwebapp.DTO.RiskLevelDTO;
+import com.mediscreen.mediscreenwebapp.beans.CredentialBean;
 import com.mediscreen.mediscreenwebapp.beans.NoteBean;
 import com.mediscreen.mediscreenwebapp.beans.PatientBean;
+import com.mediscreen.mediscreenwebapp.proxies.LoginProxy;
 import com.mediscreen.mediscreenwebapp.proxies.MicroserviceNoteProxy;
 import com.mediscreen.mediscreenwebapp.proxies.MicroservicePatientProxy;
 import com.mediscreen.mediscreenwebapp.proxies.MicroserviceRiskProxy;
+import com.mediscreen.mediscreenwebapp.service.UserCredentialsService;
 import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,14 +38,19 @@ public class WebappController {
 
     private final MicroserviceRiskProxy riskProxy;
 
+    private final LoginProxy loginProxy;
+
+    private final UserCredentialsService userCredentialsService;
+
     private static final Logger logger = LoggerFactory.getLogger(WebappController.class);
 
 
-
-    public WebappController(MicroservicePatientProxy patientProxy, MicroserviceNoteProxy noteProxy, MicroserviceRiskProxy riskProxy) {
+    public WebappController(MicroservicePatientProxy patientProxy, MicroserviceNoteProxy noteProxy, MicroserviceRiskProxy riskProxy, LoginProxy loginProxy, UserCredentialsService userCredentialsService) {
         this.patientProxy = patientProxy;
         this.noteProxy = noteProxy;
         this.riskProxy = riskProxy;
+        this.loginProxy = loginProxy;
+        this.userCredentialsService = userCredentialsService;
     }
 
     /**
@@ -242,4 +250,19 @@ public class WebappController {
         patientProxy.deletePatient(id);
         return "redirect:/patient";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "Login";
+    }
+
+    // TODO JavaDoc
+    @PostMapping("/login")
+    public String performLogin(@RequestParam String username, @RequestParam String password) {
+        CredentialBean credentialBean = new CredentialBean(username, password);
+        userCredentialsService.saveCredentials(credentialBean);
+        loginProxy.authenticate(credentialBean);
+        return "redirect:/patient";
+    }
+
 }
