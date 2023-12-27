@@ -251,18 +251,45 @@ public class WebappController {
         return "redirect:/patient";
     }
 
+    /**
+     * Handles the GET request for the login page.
+     *
+     * @return the name of the login view.
+     */
     @GetMapping("/login")
     public String login() {
         return "Login";
     }
 
-    // TODO JavaDoc
+    /**
+     * Processes the POST request for user authentication.
+     * Attempts to authenticate the user with the provided username and password.
+     * If authentication fails, redirects back to the login page with an error message.
+     *
+     * @param username the username provided by the user.
+     * @param password the password provided by the user.
+     * @param redirectAttributes attributes used for passing data during a redirect.
+     * @return a redirect instruction, either to the patient page upon successful authentication or back to the login page with an error message.
+     */
     @PostMapping("/login")
-    public String performLogin(@RequestParam String username, @RequestParam String password) {
+    public String performLogin(@RequestParam String username, @RequestParam String password, RedirectAttributes redirectAttributes) {
         CredentialBean credentialBean = new CredentialBean(username, password);
-        userCredentialsService.saveCredentials(credentialBean);
-        loginProxy.authenticate(credentialBean);
-        return "redirect:/patient";
+        try {
+            userCredentialsService.saveCredentials(credentialBean);
+            loginProxy.authenticate(credentialBean);
+            return "redirect:/patient";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Identifiant incorrect");
+            return "redirect:/login";
+        }
     }
+
+    @GetMapping("/logout")
+    public String logout() {
+        loginProxy.logout();
+        return "redirect:/login";
+    }
+
+
 
 }
