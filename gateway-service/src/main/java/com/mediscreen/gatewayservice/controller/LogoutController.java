@@ -8,9 +8,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LogoutController {
 
-    @GetMapping("/logout")
-    public void logout() {
-        WebSessionServerLogoutHandler webSessionServerLogoutHandler = new WebSessionServerLogoutHandler();
-        SecurityContextHolder.clearContext();
-    }
 }

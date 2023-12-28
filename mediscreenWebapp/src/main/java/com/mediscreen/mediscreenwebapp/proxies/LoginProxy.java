@@ -12,7 +12,4 @@ public interface LoginProxy {
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     void authenticate(@RequestBody CredentialBean credentialBean);
 
-    @GetMapping("/logout")
-    void logout();
-
 }
