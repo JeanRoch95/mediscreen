@@ -24,3 +24,11 @@ N'oubliez pas de changer votre username & password dans les fichiers application
 ## Connexion a l'application
 * username : utilisateur
 * password : mdp
+
+## Utilisation du green-code
+* Optimiser les termes déclencheurs dans le service risk.
+* Documenter le code pour améliorer la maintenabilité.
+* Utilisation de sonar-lint qui aide à identifier et corriger les problèmes de qualité et de sécurité.
+
+## Affichage du niveau de risque 
+Les niveaux de risque sont par défaut vides, il vous suffit de rajouter une note avec ou sans termes déclencheurs pour que le calcul du risk s'effectue et s'affiche.
