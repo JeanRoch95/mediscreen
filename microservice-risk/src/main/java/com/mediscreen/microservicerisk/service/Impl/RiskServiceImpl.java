@@ -13,17 +13,32 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RiskServiceImpl implements RiskService {
 
     private static final Logger logger = LoggerFactory.getLogger(RiskServiceImpl.class);
 
-    private final List<String> triggerTerms = List.of(
-            "Hémoglobine A1C", "Microalbumine", "Taille", "Poids", "Fumeur", "Fumeuse",
-            "Anormal", "Cholestérol", "Vertige", "Rechute", "Réaction", "Anticorps"
-    );
+    private static final String RISK_NONE = "None";
+    private static final String RISK_BORDERLINE = "Borderline";
+    private static final String RISK_IN_DANGER = "In Danger";
+    private static final String RISK_EARLY_ONSET = "Early onset";
+
+    private final Set<String> normalizedTriggerTerms = new HashSet<>();
+
+
+    // Normaliser les termes déclencheur une seule fois à l'initialisation pour green code
+    // Utilisation HashSet pour recherche plus rapide et efficace
+    public RiskServiceImpl() {
+        List<String> triggerTerms = List.of(
+                "Hémoglobine A1C", "Microalbumine", "Taille", "Poids", "Fumeur", "Fumeuse",
+                "Anormal", "Cholestérol", "Vertige", "Rechute", "Réaction", "Anticorps"
+        );
+        triggerTerms.forEach(term -> normalizedTriggerTerms.add(normalizeString(term)));
+    }
     @Override
     public RiskAssessmentResponse evaluateRisk(NoteDTO noteDTO) {
         int age = calculateAge(noteDTO.getBirthDate());
@@ -64,8 +79,8 @@ public class RiskServiceImpl implements RiskService {
         int count = 0;
         for (String note : notes) {
             String normalizedNote = normalizeString(note);
-            for (String term : triggerTerms) {
-                if (normalizedNote.contains(normalizeString(term))) {
+            for (String term : normalizedTriggerTerms) {
+                if (normalizedNote.contains(term)) {
                     count++;
                     logger.info("Terme déclencheur détecté : {}", term);
                 }
@@ -78,35 +93,33 @@ public class RiskServiceImpl implements RiskService {
     @Override
     public String determineRiskLevel(int age, String gender, int triggerCount) {
         if (triggerCount == 0) {
-            return "None";
+            return RISK_NONE;
         }
 
-        if (age > 30 && triggerCount >= 2 && triggerCount <= 5) {
-            return "Borderline";
-        }
+        boolean isMale = gender.equalsIgnoreCase("M");
+        boolean isYoungerThan30 = age <= 30;
 
-        if (age <= 30) {
-            if (gender.equalsIgnoreCase("M")) {
-                if (triggerCount >= 5) {
-                    return "Early onset";
-                } else if (triggerCount >= 3) {
-                    return "In Danger";
-                }
-            } else {
-                if (triggerCount >= 7) {
-                    return "Early onset";
-                } else if (triggerCount >= 4) {
-                    return "In Danger";
-                }
+        if (isYoungerThan30) {
+            if (isMale && triggerCount >= 5 || !isMale && triggerCount >= 7) {
+                return RISK_EARLY_ONSET;
+            }
+            if (isMale && triggerCount >= 3 || !isMale && triggerCount >= 4) {
+                return RISK_IN_DANGER;
             }
         } else {
             if (triggerCount >= 8) {
-                return "Early onset";
-            } else if (triggerCount >= 6) {
-                return "In Danger";
+                return RISK_EARLY_ONSET;
+            }
+            if (triggerCount >= 6) {
+                return RISK_IN_DANGER;
+            }
+            if (triggerCount >= 2) {
+                return RISK_BORDERLINE;
             }
         }
-        return "None";
+
+        return RISK_NONE;
     }
+
 
 }

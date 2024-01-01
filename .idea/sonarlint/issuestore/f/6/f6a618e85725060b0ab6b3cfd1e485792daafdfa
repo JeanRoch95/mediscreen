@@ -1,0 +1,11 @@
+
+n
+java:S1192¤"RDefine a constant instead of duplicating this literal "redirect:/patient" 5 times.(ù®Ôóüÿÿÿÿ
+i
+java:S1192v"NDefine a constant instead of duplicating this literal "CreatePatient" 3 times.(‚Í£•ÿÿÿÿÿ
+j
+java:S1192Î"NDefine a constant instead of duplicating this literal "UpdatePatient" 3 times.(°€Îÿÿÿÿÿ
+c
+java:S1192R"HDefine a constant instead of duplicating this literal "patient" 4 times.(–×ö¾üÿÿÿÿ
+i
+java:S6204”"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹

@@ -1,8 +1,5 @@
 package com.mediscreen.mediscreenwebapp.DTO;
 
-
-import com.mediscreen.mediscreenwebapp.beans.NoteBean;
-
 import java.util.Date;
 import java.util.List;
 

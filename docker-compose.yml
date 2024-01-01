@@ -54,6 +54,8 @@ services:
 
   mysql:
     image: mysql:8.0
+    ports:
+      - "3306:3306"  #Port exposé
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
@@ -63,6 +65,8 @@ services:
 
   mongodb:
     image: mongo:latest
+    ports:
+      - "27017:27017" #Port exposé
     volumes:
       - mongodb_data_container:/data/db
     networks:

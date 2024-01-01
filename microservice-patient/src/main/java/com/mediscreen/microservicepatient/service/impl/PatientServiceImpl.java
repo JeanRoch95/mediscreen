@@ -28,14 +28,16 @@ public class PatientServiceImpl implements PatientService {
         if(patient == null) {
             throw new PatientNotFoundException("Aucun patient trouvé avec le nom: " + lastName + ", et le prénom: " + firstName);
         }
-        return patientMapper.ToDTO(patient);
+        return patientMapper.toDTO(patient);
     }
 
     @Override
     public PatientDTO getPatientById(long id) {
         Optional<Patient> patient = patientRepository.findById(id);
-            PatientDTO patientDTO = patientMapper.ToDTO(patient.get());
-            return patientDTO;
+        if(patient.isEmpty()){
+            throw new PatientNotFoundException("Le patient n'existe pas.");
+        }
+        return patientMapper.toDTO(patient.get());
 }
 
     @Override
@@ -61,7 +63,7 @@ public class PatientServiceImpl implements PatientService {
 
         patientRepository.save(patient);
 
-        return patientMapper.ToDTO(patient);
+        return patientMapper.toDTO(patient);
     }
 
     @Override

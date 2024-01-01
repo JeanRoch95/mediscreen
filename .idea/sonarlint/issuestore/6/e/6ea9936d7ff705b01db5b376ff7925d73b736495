@@ -1,0 +1,16 @@
+
+b	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(“„‹¿8Íâ¯Ì1
+‰
+java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(“„‹¿8­â¯Ì1
+j
+java:S5738"HRemove this call to a deprecated method, it has been marked for removal.(øş­Ÿûÿÿÿÿ8¾â¯Ì1
+S
+java:S1611"6Remove the parentheses around the "requests" parameter(ÏˆİÓ8¿â¯Ì1
+j
+java:S5738"HRemove this call to a deprecated method, it has been marked for removal.(Åúßµûÿÿÿÿ8Úâ¯Ì1
+d
+java:S5738"HRemove this call to a deprecated method, it has been marked for removal.(‡’88Ûâ¯Ì1
+j
+java:S5738"HRemove this call to a deprecated method, it has been marked for removal.(Åúßµûÿÿÿÿ8Ûâ¯Ì1
+e
+java:S5738"HRemove this call to a deprecated method, it has been marked for removal.(éå×¦8Ûâ¯Ì1

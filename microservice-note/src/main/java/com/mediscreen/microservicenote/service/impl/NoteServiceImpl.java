@@ -25,8 +25,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public List<Note> getAllNoteByPatientId(long id) {
-        List<Note> allNotesById = noteRepository.findAllByPatientId(id);
-        return allNotesById;
+        return noteRepository.findAllByPatientId(id);
     }
 
     @Override

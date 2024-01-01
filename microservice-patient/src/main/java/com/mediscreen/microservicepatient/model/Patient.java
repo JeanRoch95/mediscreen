@@ -1,12 +1,8 @@
 package com.mediscreen.microservicepatient.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity

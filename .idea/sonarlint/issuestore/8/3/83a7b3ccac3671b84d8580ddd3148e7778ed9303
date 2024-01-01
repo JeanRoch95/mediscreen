@@ -1,0 +1,13 @@
+
+Q
+java:S3740#"/Provide the parametrized type for this generic.(šÙçÄşÿÿÿÿ8í¦¨Ë1
+C
+java:S1452:"&Remove usage of generic wildcard type.(ãî†÷8§í¦¨Ë1
+H
+java:S1452K"&Remove usage of generic wildcard type.(Ú¼ÕŠùÿÿÿÿ8§í¦¨Ë1
+H
+java:S1452d"&Remove usage of generic wildcard type.(³ÜÚşøÿÿÿÿ8ªí¦¨Ë1
+I
+java:S1128"-Remove this unused import 'org.slf4j.Logger'.(íØ®68¸›¸¨Ë1
+Q
+java:S1128"4Remove this unused import 'org.slf4j.LoggerFactory'.(–ÿÚŞ8¸›¸¨Ë1

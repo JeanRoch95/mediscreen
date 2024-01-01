@@ -2,7 +2,6 @@ package com.mediscreen.microservicepatient.controller;
 
 import com.mediscreen.microservicepatient.dto.PatientDTO;
 import com.mediscreen.microservicepatient.exception.PatientNotFoundException;
-import com.mediscreen.microservicepatient.model.Patient;
 import com.mediscreen.microservicepatient.service.PatientService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -22,8 +21,6 @@ import java.util.Map;
 public class PatientController {
 
     private final PatientService patientService;
-
-    private final Logger LOGGER = LoggerFactory.getLogger(PatientController.class);
 
     public PatientController(PatientService patientService) {
         this.patientService = patientService;
@@ -47,9 +44,7 @@ public class PatientController {
      */
     @GetMapping("/patient/{id}")
     public PatientDTO getPatientById(@PathVariable long id) {
-        LOGGER.info("Get patient with id : " + id);
-        PatientDTO patientDTO = patientService.getPatientById(id);
-        return patientDTO;
+        return patientService.getPatientById(id);
     }
 
     /**
@@ -62,7 +57,6 @@ public class PatientController {
     @GetMapping("/patient/by-name")
     public ResponseEntity<?> getPatientByLastNameAndFirstName(@RequestParam("lastname") String lastName, @RequestParam("firstname") String firstName) {
         try {
-            LOGGER.info("Get patient with lastname : " + lastName + " and firstname : " + firstName);
             PatientDTO patientDTO = patientService.getPatientByFirstNameAndLastName(lastName, firstName);
             return ResponseEntity.ok(patientDTO);
         } catch (PatientNotFoundException ex) {

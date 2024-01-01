@@ -1,14 +1,8 @@
 package com.mediscreen.microservicenote.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
-
 
 @Document(collection = "notes")
 public class Note {

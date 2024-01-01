@@ -1,7 +1,6 @@
 package com.mediscreen.mediscreenwebapp.proxies;
 
 import com.mediscreen.mediscreenwebapp.beans.CredentialBean;
-import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

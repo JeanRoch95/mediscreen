@@ -3,9 +3,6 @@ package com.mediscreen.microservicerisk.controller;
 import com.mediscreen.microservicerisk.DTO.NoteDTO;
 import com.mediscreen.microservicerisk.DTO.RiskAssessmentResponse;
 import com.mediscreen.microservicerisk.service.Impl.RiskServiceImpl;
-import com.mediscreen.microservicerisk.service.RiskService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class RiskController {
 
     private final RiskServiceImpl riskService;
-
-    private static final Logger logger = LoggerFactory.getLogger(RiskController.class);
-
 
     public RiskController(RiskServiceImpl riskService) {
         this.riskService = riskService;
