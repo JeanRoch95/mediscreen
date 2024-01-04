@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS patient (
                                        address VARCHAR(255),
                                        phonenumber VARCHAR(255),
                                        gender VARCHAR(50)
-);g
+);
 
 
 INSERT INTO patient (firstname, lastname, dateofbirth, gender, address, phonenumber) VALUES

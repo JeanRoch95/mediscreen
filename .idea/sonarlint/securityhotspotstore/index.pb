@@ -163,9 +163,7 @@ O
 emediscreenWebapp/src/main/java/com/mediscreen/mediscreenwebapp/configuration/SpringConfiguration.java,0/5/05be66324c01bb0a7b261af8fab7ad7f1e5b3663
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-=
-init-mongo.js,7/3/73f7074a0f514bd68cc220fe5c12d4369dbdd44d
-8
-init.sql,6/5/65c53882265f08184e3a675fb30d3f1628e6f5b4
 C
 mysql-init/init.sql,7/b/7bbdeff96ce093927751907d7d3ee4d1d75fce0d
+H
+mongo-seed/init-mongo.js,c/a/ca571ffc191e4d57762cff321b98d24920b19e67
