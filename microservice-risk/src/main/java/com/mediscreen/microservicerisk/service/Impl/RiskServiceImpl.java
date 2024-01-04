@@ -42,18 +42,14 @@ public class RiskServiceImpl implements RiskService {
     @Override
     public RiskAssessmentResponse evaluateRisk(NoteDTO noteDTO) {
         int age = calculateAge(noteDTO.getBirthDate());
-        logger.info("Age du patient : {}", age);
-        logger.info("Sexe du patient : {}", noteDTO.getGender());
         int triggerCount = countTriggerTerms(noteDTO.getNoteContent());
 
         String riskLevel = determineRiskLevel(age, noteDTO.getGender(), triggerCount);
-        logger.info("RiskLevel 1: {}", riskLevel);
 
         RiskAssessmentResponse riskAssessmentResponse = new RiskAssessmentResponse();
         riskAssessmentResponse.setRiskLevel(riskLevel);
         riskAssessmentResponse.setPatientId(noteDTO.getPatientId());
 
-        logger.info("riskLevel2 : {}", riskAssessmentResponse.getRiskLevel());
 
         return riskAssessmentResponse;
     }

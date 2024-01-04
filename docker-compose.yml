@@ -35,7 +35,9 @@ services:
       context: ./microservice-patient
       dockerfile: Dockerfile
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
+
     networks:
       - internal
     environment:
@@ -54,12 +56,19 @@ services:
 
   mysql:
     image: mysql:8.0
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
       - "3306:3306"  #Port exposé
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mediscreen_patient
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
     networks:
       - internal
 
@@ -69,6 +78,7 @@ services:
       - "27017:27017" #Port exposé
     volumes:
       - mongodb_data_container:/data/db
+      - ./mongo-seed:/docker-entrypoint-initdb.d
     networks:
       - internal
 
